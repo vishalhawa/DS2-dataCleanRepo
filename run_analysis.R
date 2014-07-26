@@ -64,17 +64,19 @@ aggdata = subset(aggdata, select=-c(Subject,Label))
 colnames(aggdata)[1]<-"Subject"
 colnames(aggdata)[2]<-"Label"
 
-write.table(aggdata,file="data/tidy2.txt")
+write.csv(aggdata,file="tidy2.csv")
 
 names(aggdata)
               
  
 # ------------End ------------
-sdf=split(tidy2,list(tidy2$Subject, tidy2$Label))
+#-------------For Reference and assessment ---------
 
-w.m <- lapply(sdf,mean)
+#sdf=split(tidy2,list(tidy2$Subject, tidy2$Label))
 
-tidyDataStd=subset(tidyData, select= tidyNamesStd)
-tidyDataMean=subset(tidyData, select= tidyNamesMean)
+# w.m <- lapply(sdf,mean)
+
+# tidyDataStd=subset(tidyData, select= tidyNamesStd)
+# tidyDataMean=subset(tidyData, select= tidyNamesMean)
 
 
