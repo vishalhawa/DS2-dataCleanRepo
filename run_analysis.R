@@ -67,8 +67,19 @@ colnames(aggdata)[2]<-"Label"
 write.csv(aggdata,file="tidy2.csv")
 
 names(aggdata)
-              
- 
+
+lst=(strsplit(names(aggdata),"\\-"))
+
+signals = sapply(lst, "[[",  1) 
+stats = sapply(lst, "[",  2) 
+axis = sapply(lst, "[",  3) 
+
+codebook = data.frame(variables=names(aggdata), description=paste(stats,"of",signals,"feature","at",axis,"axis"))
+
+writeLines(paste("'",names(aggdata),"'", "   This is ",stats,"of",signals,"feature","at",axis,"axis"),con="codebook.md")
+
+
+
 # ------------End ------------
 #-------------For Reference and assessment ---------
 
@@ -78,5 +89,8 @@ names(aggdata)
 
 # tidyDataStd=subset(tidyData, select= tidyNamesStd)
 # tidyDataMean=subset(tidyData, select= tidyNamesMean)
+# match<-regexpr("(^[A-z]+)[-]",names(aggdata))
+
+# regmatches(names(aggdata),match) 
 
 
